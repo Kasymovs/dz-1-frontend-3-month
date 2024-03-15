@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Email и ссылки</title>
+<style>
+    .valid {
+        border: 2px solid green;
+    }
+    .invalid {
+        border: 2px solid red;
+    }
+</style>
+</head>
+<body>
+    <label for="textInput">Введи какой нибудь текст :):</label><br>
+    <input type="text" id="textInput"><br><br>
+    
+    <div id="emailResult"></div>
+    <div id="linkResult"></div>
+
+    <script>
+        const textInput = document.getElementById('textInput');
+        const emailResult = document.getElementById('emailResult');
+        const linkResult = document.getElementById('linkResult');
+
+        textInput.addEventListener('input', () => {
+            const text = textInput.value;
+            const isEmail = /\S+@\S+\.\S+/.test(text);
+            const isLink = /https?:\/\/\S+\.\S+/.test(text);
+
+            if (isEmail) {
+                emailResult.innerText = 'Email: true';
+                emailResult.className = 'valid';
+            } else {
+                emailResult.innerText = 'Email: false';
+                emailResult.className = 'invalid';
+            }
+
+            if (isLink) {
+                linkResult.innerText = 'Ссылка: true';
+                linkResult.className = 'valid';
+            } else {
+                linkResult.innerText = 'Ссылка: false';
+                linkResult.className = 'invalid';
+            }
+        });
+    </script>
+</body>
+</html>
